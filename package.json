@@ -3,9 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.6.9",
+    "@livepeer/react": "^0.6.0",
+    "@livepeer/video-nft": "^0.3.6",
+    "@tanstack/react-query": "^4.6.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
+    "cross-fetch": "^3.1.5",
+    "ethers": "^5.7.1",
+    "graphql": "^16.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.2.1",
@@ -13,6 +20,8 @@
     "sass": "^1.49.8",
     "styled-components": "^5.3.3",
     "uikit": "^3.11.1",
+    "uuid": "^9.0.0",
+    "wagmi": "^0.6.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
