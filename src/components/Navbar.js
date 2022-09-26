@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/images/logo.svg";
+import logo from "../assets/images/diamond-logo.png";
+import ConnectWalletButton from "./ConnectWalletButton";
 
-const Navbar = () => {
+const Navbar = ({ address, setAddress, setChainId }) => {
   return (
     <nav className="uk-navbar-container" uk-navbar="true">
       <div className="uk-navbar-left uk-margin-left">
@@ -17,14 +18,27 @@ const Navbar = () => {
                 data-uk-img=""
                 uk-image="true"
               />
-              LOGO
             </NavLink>
           </li>
         </ul>
       </div>
       <div className="uk-navbar-right uk-margin-right">
         <ul className="uk-navbar-nav">
-          <button className="uk-button uk-button-primary">Lens Login</button>
+          <li>
+            {!address ? (
+              <ConnectWalletButton
+                setAddress={setAddress}
+                setChainId={setChainId}
+              />
+            ) : (
+              <button
+                className="uk-button uk-button-primary"
+                onClick={(event) => setAddress(null)}
+              >
+                Disconnect
+              </button>
+            )}
+          </li>
         </ul>
       </div>
     </nav>
