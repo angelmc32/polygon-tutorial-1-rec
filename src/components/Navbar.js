@@ -3,7 +3,13 @@ import { NavLink } from "react-router-dom";
 import logo from "../assets/images/diamond-logo.png";
 import ConnectWalletButton from "./ConnectWalletButton";
 
-const Navbar = ({ address, setAddress, setChainId }) => {
+const Navbar = ({
+  address,
+  setAddress,
+  setChainId,
+  isLoadingState,
+  setIsLoadingState,
+}) => {
   return (
     <nav className="uk-navbar-container" uk-navbar="true">
       <div className="uk-navbar-left uk-margin-left">
@@ -27,6 +33,8 @@ const Navbar = ({ address, setAddress, setChainId }) => {
           <li>
             {!address ? (
               <ConnectWalletButton
+                setIsLoadingState={setIsLoadingState}
+                isLoadingState={isLoadingState}
                 setAddress={setAddress}
                 setChainId={setChainId}
               />

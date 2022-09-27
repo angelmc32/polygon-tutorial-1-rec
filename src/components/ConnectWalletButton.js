@@ -1,21 +1,28 @@
+import { Fragment } from "react";
 import { ethers } from "ethers";
 import { login } from "../api/login";
 
-const ConnectWalletButton = ({ setAddress, setChainId }) => {
+const ConnectWalletButton = ({
+  setAddress,
+  setChainId,
+  isLoadingState,
+  setIsLoadingState,
+}) => {
   const handleWalletConnect = async () => {
+    setIsLoadingState(true);
     const { ethereum } = window;
     if (ethereum) {
       const provider = new ethers.providers.Web3Provider(ethereum);
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
+      await login(accounts[0]);
       const signer = provider.getSigner();
       const address = await signer.getAddress();
       setAddress(address);
       const { chainId } = await provider.getNetwork();
       setChainId(chainId);
-
-      await login(accounts[0]);
+      setIsLoadingState(false);
     } else {
       alert("No Wallet Detected");
     }
@@ -24,8 +31,16 @@ const ConnectWalletButton = ({ setAddress, setChainId }) => {
     <button
       className="uk-button uk-button-primary"
       onClick={handleWalletConnect}
+      disabled={isLoadingState}
     >
-      Connect Wallet
+      {isLoadingState ? (
+        <Fragment>
+          <div uk-spinner="true" />
+          Logging in
+        </Fragment>
+      ) : (
+        "Lens Login"
+      )}
     </button>
   );
 };

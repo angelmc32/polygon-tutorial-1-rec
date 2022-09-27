@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import "./styles/styles.css";
 
 const App = () => {
+  const [isLoadingState, setIsLoadingState] = useState(false);
   const [address, setAddress] = useState(null);
   const [chainId, setChainId] = useState(null);
 
@@ -13,6 +14,8 @@ const App = () => {
     <div className="App">
       <Navbar
         address={address}
+        isLoadingState={isLoadingState}
+        setIsLoadingState={setIsLoadingState}
         setAddress={setAddress}
         setChainId={setChainId}
       />
